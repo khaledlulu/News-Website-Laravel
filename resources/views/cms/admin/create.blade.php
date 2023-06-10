@@ -45,10 +45,10 @@
         </div>
 
         <div class="row card-body">
-        <div class="form-group col-md-4">
-        <label for="mobil">Mobile </label>
-        <input type="text" class="form-control" name="mobil" id="mobil" placeholder="Enter The Mobil">
-        </div>
+            <div class="form-group col-md-4">
+                <label for="mobil">Mobil </label>
+                <input type="text" class="form-control" name="mobil" id="mobil" placeholder="Enter The Mobil">
+                </div>
 
         <div class="form-group col-md-4">
         <label for="email">Email </label>
@@ -91,9 +91,10 @@
         </div>
 
 
-        <div class="form-group col-md-6 card-body">
-        <label for="image">Image </label>
-        <input type="file" class="form-control" name="image" id="image" placeholder=" chosee the pic">
+        <div class="form-group col-md-4">
+            <label for="image">Image</label>
+            <input type="file" name="image" class="form-control" id="image"
+            placeholder="Enter Image">
         </div>
 
 
@@ -114,10 +115,11 @@
 
     <script>
         function  performstore(){
-            let formData = new FormData();
+            // let formData = new FormData();
+            let formData = new FormData(document.querySelector('form'));
             formData.append('first_name' ,document.getElementById('first_name').value);
             formData.append('last_name' ,document.getElementById('last_name').value);
-            formData.append('mobil' ,document.getElementById('mobil').value);
+            formData.append('mobil', document.getElementById('mobil').value);
             formData.append('email' ,document.getElementById('email').value);
             formData.append('password' ,document.getElementById('password').value);
             formData.append('gender' ,document.getElementById('gender').value);

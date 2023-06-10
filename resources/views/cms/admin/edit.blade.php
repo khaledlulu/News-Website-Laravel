@@ -36,34 +36,29 @@
         <div class="form-group col-md-4">
         <label for="first_name">First Name</label>
         <input type="text" class="form-control" name="first_name" id="first_name"
-        value="{{ $admin->user->first_name  }}"    placeholder="Enter The First Name">
+        value="{{ $admins->user->first_name  }}"    placeholder="Enter The First Name">
         </div>
 
         <div class="form-group col-md-4">
         <label for="last_name">Last Name </label>
         <input type="text" class="form-control" name="last_name" id="last_name"
-        value="{{ $admin->user->last_name  }}"  placeholder="Enter The Last Name">
+        value="{{ $admins->user->last_name  }}"  placeholder="Enter The Last Name">
         </div>
         </div>
 
-        <div class="row card-body">
+
+
         <div class="form-group col-md-4">
-        <label for="mobil">Mobile </label>
+        <label for="mobil">Mobil </label>
         <input type="text" class="form-control" name="mobil" id="mobil"
-        value="{{ $admin->user->mobil}}"  placeholder="Enter The Mobile">
+        value="{{ $admins->user->mobil }}" placeholder="Enter The Mobil">
         </div>
-
         <div class="form-group col-md-4">
         <label for="email">Email </label>
         <input type="text" class="form-control" name="email" id="email"
         value="{{ $admins->email }}" placeholder="Enter The Email">
         </div>
 
-        {{-- <div class="form-group col-md-4">
-        <label for="password">Password </label>
-        <input type="password" class="form-control" name="password" id="password"
-        value="{{ $admins->user->password }}"  placeholder="Enter The Email">
-        </div> --}}
 
         </div>
 
@@ -72,7 +67,7 @@
             <label for="gender">Gender</label>
             <select class="form-control " style="width: 100%;" id="gender" name="gender"
             aria-label=".form-select-sm example">
-                <option selected >{{ $admin->user->gender }}</option>
+                <option selected >{{ $admins->user->gender }}</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
@@ -83,7 +78,7 @@
             <select class="form-control " style="width: 100%;" id="status" name="status"
             aria-label=".form-select-sm example">
 
-            <option selected >{{ $admin->user->status }}</option>
+            <option selected >{{ $admins->user->status }}</option>
                 <option value="active">Active</option>
                 <option value="inactive">Inactive</option>
             </select>
@@ -93,21 +88,22 @@
         <label for="birth_date">Birthday </label>
         <input type="date" class="form-control" name="birth_date" id="birth_date"
         value="{{ $admins->user->birth_date }}" placeholder="Enter The Birthday">
-        </div>
+    </div>
 
-        </div>
+</div>
 
 
-        <div class="form-group col-md-6 card-body">
-        <label for="image">Image </label>
-        <input type="file" class="form-control" name="image" id="image" placeholder=" chosee the pic">
+<div class="form-group col-md-6 card-body">
+    <label for="image">Image </label>
+    <input type="file" class="form-control" name="image" id="image"
+    value="{{ $admins->user->image }}"placeholder=" chosee the pic">
         </div>
 
 
       <!-- /.card-body -->
 
       <div class="card-footer">
-        <a href="#" onclick="performsUpdate({{ $admins->id }})" type="button" class="btn btn-primary">Creat</a>
+        <a href="#" onclick="performsUpdate({{ $admins->id }})" type="button" class="btn btn-primary">Update</a>
         <a href="{{ route('admins.index') }}" type="button"
         class="btn btn-primary">Return to index</a>
       </div>

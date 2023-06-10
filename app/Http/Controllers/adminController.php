@@ -41,11 +41,10 @@ class adminController extends Controller
     public function store(Request $request)
     {
         $validator = validator($request->all(), [
+            'image' => "required|image|max:2048|mimes:png,jpg,jpeg,pdf",
             'first_name' => 'required',
             'last_name' => 'required',
-            'mobil' => 'required',
             'birth_date' => 'required',
-            'image' => 'required',
         ], []);
 
         if (!$validator->fails()) {
@@ -56,15 +55,15 @@ class adminController extends Controller
 
             $isSaved = $admins->save();
 
-            return ['redirect' => route('admins.index')];
+
+
 
             if ($isSaved) {
                 $users = new User();
                 if (request()->hasFile('image')) {
-
-                    $image = $request->file('image');;
+                    $image = $request->file('image');
                     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-                    $image->move('images/admins', $imageName);
+                    $image->move('storage/images/admin', $imageName);
                     $users->image = $imageName;
                 }
 
@@ -121,7 +120,53 @@ class adminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = validator($request->all(), [
+            'image' => "required|image|max:2048|mimes:png,jpg,jpeg,pdf",
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'birth_date' => 'required',
+        ], []);
+
+        if (!$validator->fails()) {
+
+            $admins = admin::findOrFail($id);
+            $admins->email = $request->get('email');
+            // $admins->password = Hash::make($request->get('password'));
+
+            $isSaved = $admins->save();
+
+
+
+
+            if ($isSaved) {
+                $users = $admins->user;
+                if (request()->hasFile('image')) {
+                    $image = $request->file('image');
+                    $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+                    $image->move('storage/images/admin', $imageName);
+                    $users->image = $imageName;
+                }
+
+                $users->first_name = $request->get('first_name');
+                $users->last_name = $request->get('last_name');
+                $users->mobil = $request->get(' mobil');
+                $users->status = $request->get('status');
+                $users->gender = $request->get('gender');
+                $users->birth_date = $request->get('birth_date');
+                $users->country_id = $request->get('country_id');
+                $users->actor()->associate($admins);
+                $isSaved = $users->save();
+                return ['redirect' => route('admins.index')];
+
+                return response()->json(['icon' => 'success', 'title' => 'Update is successfully'], 200);
+            } else {
+                return response()->json(['icon' => 'error', 'title' => 'Update is falid'], 400);
+            }
+        } else {
+            return response()->json([
+                'icon' => 'error', 'title' => $validator->getMessageBag()->first()
+            ], 400);
+        }
     }
 
     /**
@@ -132,6 +177,6 @@ class adminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admins = admin::destroy($id);
     }
 }

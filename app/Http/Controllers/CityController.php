@@ -51,7 +51,8 @@ class CityController extends Controller
 
             $isSaved = $cities->save();
 
-            return ['redirect' => route('cities.index')];
+
+            // return ['redirect' => route('cities.index')];
 
             if ($isSaved) {
                 return response()->json(['icon' => 'success', 'title' => 'created is successfully'], 200);

@@ -53,26 +53,20 @@
                     <td>{{ $admin->user->status ?? 'not found' }}</td>
                     <td>{{ $admin->user->gender ?? 'not found' }}</td>
                     <td>{{ $admin->user->birth_date ?? 'not found' }}</td>
-                    <td>{{ $admin->user->image ?? 'not found' }}</td>
-
-
-                    {{-- <td>{{ $admin->user->first_name}}</td>
-                    <td>{{ $admin->user->last_name}}</td>
-                    <td>{{ $admin->email}}</td>
-                    <td>{{ $admin->user->mobil}}</td>
-                    <td>{{ $admin->user->status }}</td>
-                    <td>{{ $admin->user->gender}}</td>
-                    <td>{{ $admin->user->birth_date }}</td> --}}
-
                     <td>
-                    <div class="btn-group-sm ">
+
+                        <img class="img-circle img-bordered-sm "
+                        src="{{ $admin->user ? asset('storage/images/admin/'.$admin->user->image) : asset('image/Backend_Roadmap _.jpg') }}"
+                        width="50" height="50" alt="User Image">
+                    </td>
+                <td>
+            <div class="btn-group-sm card-body">
             <a href={{ route('admins.edit', $admin->id ) }} type="button" class="btn btn-primary">edit</a>
             <a href="#"  onclick="performDestroy({{ $admin->id }}, this)"
                 type="button" class="btn btn-danger">Delete</a>
 
                 {{-- <button type="button" class="btn btn-success">info</button> --}}
                     </div>
-
                     </td>
                 </tr>
                 @endforeach
