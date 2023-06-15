@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\admin;
+use App\Models\Author;
 use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class adminController extends Controller
+class AuthorCountroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class adminController extends Controller
      */
     public function index()
     {
-        $admins = admin::with('user')->orderBy('id', 'asc')->Paginate(10);
-        return response()->view('cms.admin.index', compact('admins'));
+        $authors = Author::with('user')->orderBy('id', 'asc')->Paginate(7);
+        return response()->view('cms.author.index', compact('authors'));
     }
 
     /**
@@ -29,7 +29,7 @@ class adminController extends Controller
     public function create()
     {
         $countries = Country::all();
-        return response()->view('cms.admin.create', compact('countries'));
+        return response()->view('cms.author.create', compact('countries'));
     }
 
     /**
@@ -41,7 +41,8 @@ class adminController extends Controller
     public function store(Request $request)
     {
         $validator = validator($request->all(), [
-            'image' => "required|image|max:2048|mimes:png,jpg,jpeg,pdf",
+            // 'image' => "required|image|max:2048|mimes:png,jpg,jpeg,pdf",
+            // 'file' => "required|file|max:2048|mimes:png,jpg,jpeg,pdf",
             'first_name' => 'required',
             'last_name' => 'required',
             'birth_date' => 'required',
@@ -49,11 +50,17 @@ class adminController extends Controller
 
         if (!$validator->fails()) {
 
-            $admins = new admin();
-            $admins->email = $request->get('email');
-            $admins->password = Hash::make($request->get('password'));
+            $authors = new Author();
+            $authors->email = $request->get('email');
+            $authors->password = Hash::make($request->get('password'));
+            if (request()->hasFile('file')) {
+                $file = $request->file('file');
+                $fileName = time() . 'file.' . $file->getClientOriginalExtension();
+                $file->move('storage/files/authors', $fileName);
+                $authors->file = $fileName;
+            }
 
-            $isSaved = $admins->save();
+            $isSaved = $authors->save();
 
 
 
@@ -63,7 +70,7 @@ class adminController extends Controller
                 if (request()->hasFile('image')) {
                     $image = $request->file('image');
                     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-                    $image->move('storage/images/admin', $imageName);
+                    $image->move('storage/images/authors', $imageName);
                     $users->image = $imageName;
                 }
 
@@ -74,7 +81,7 @@ class adminController extends Controller
                 $users->gender = $request->get('gender');
                 $users->birth_date = $request->get('birth_date');
                 $users->country_id = $request->get('country_id');
-                $users->actor()->associate($admins);
+                $users->actor()->associate($authors);
                 $isSaved = $users->save();
                 return response()->json(['icon' => 'success', 'title' => 'Crated is successfully'], 200);
             } else {
@@ -107,8 +114,8 @@ class adminController extends Controller
     public function edit($id)
     {
         $countries = Country::all();
-        $admins = admin::with('user')->findOrFail($id);
-        return response()->view('cms.admin.edit', compact('countries', 'admins'));
+        $authors = Author::with('user')->findOrFail($id);
+        return response()->view('cms.author.edit', compact('countries', 'authors'));
     }
 
     /**
@@ -121,7 +128,8 @@ class adminController extends Controller
     public function update(Request $request, $id)
     {
         $validator = validator($request->all(), [
-            'image' => "required|image|max:2048|mimes:png,jpg,jpeg,pdf",
+            // 'image' => "required|image|max:2048|mimes:png,jpg,jpeg,pdf",
+            // 'file' => "required|file|max:2048|mimes:png,jpg,jpeg,pdf",
             'first_name' => 'required',
             'last_name' => 'required',
             'birth_date' => 'required',
@@ -129,22 +137,27 @@ class adminController extends Controller
 
         if (!$validator->fails()) {
 
-            $admins = admin::findOrFail($id);
-            $admins->email = $request->get('email');
+            $authors = Author::findOrFail($id);
+            $authors->email = $request->get('email');
             // $admins->password = Hash::make($request->get('password'));
-
-            $isSaved = $admins->save();
+            if (request()->hasFile('file')) {
+                $file = $request->file('file');
+                $fileName = time() . 'file.' . $file->getClientOriginalExtension();
+                $file->move('storage/files/authors', $fileName);
+                $authors->image = $fileName;
+            }
+            $isSaved = $authors->save();
 
 
 
 
             if ($isSaved) {
-                $users = $admins->user;
+                $users = $authors->user;
                 if (request()->hasFile('image')) {
                     $image = $request->file('image');
                     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-                    $image->move('storage/images/admin', $imageName);
-                    $users->image = $imageName;
+                    $image->move('storage/images/authors', $imageName);
+                    $authors->image = $imageName;
                 }
 
                 $users->first_name = $request->get('first_name');
@@ -154,9 +167,9 @@ class adminController extends Controller
                 $users->gender = $request->get('gender');
                 $users->birth_date = $request->get('birth_date');
                 $users->country_id = $request->get('country_id');
-                $users->actor()->associate($admins);
+                $users->actor()->associate($authors);
                 $isSaved = $users->save();
-                return ['redirect' => route('admins.index')];
+                return ['redirect' => route('authors.index')];
 
                 return response()->json(['icon' => 'success', 'title' => 'Update is successfully'], 200);
             } else {
@@ -177,6 +190,7 @@ class adminController extends Controller
      */
     public function destroy($id)
     {
-        $admins = admin::destroy($id);
+        $authors = Author::destroy($id);
+        return response()->json(['icon' => 'success', 'title' => 'Deleted is successfully'], 200);
     }
 }

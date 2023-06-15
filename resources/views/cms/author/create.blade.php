@@ -1,19 +1,19 @@
 @extends('cms.parant')
 
-@section('titel', 'Create New Admin')
+@section('titel', 'Create New Author')
 
 @section('style')
 
 @endsection
-@section('Maintitel', 'Create Admin')
+@section('Maintitel', 'Create Author')
 
-@section('subtitel', 'create admin')
+@section('subtitel', 'create author')
 
 @section('content')
     <div class="card-body">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Create New Admin</h3>
+                <h3 class="card-title">Create New Author</h3>
             </div>
 
             <!-- /.card-header -->
@@ -93,11 +93,17 @@
 
         </div>
 
-
+        <div class="row card-body">
         <div class="form-group col-md-4">
             <label for="image">Image</label>
             <input type="file" name="image" class="form-control" id="image"
             placeholder="Enter Image">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="file">File</label>
+            <input type="file" name="file" class="form-control" id="file"
+            placeholder="Enter file">
+        </div>
         </div>
 
 
@@ -105,7 +111,7 @@
 
       <div class="card-footer">
         <a href="#" onclick="performstore()" type="button" class="btn btn-primary">Creat</a>
-        <a href="{{ route('admins.index') }}" type="button"
+        <a href="{{ route('authors.index') }}" type="button"
         class="btn btn-primary">Return to index</a>
       </div>
     </form>
@@ -130,7 +136,8 @@
             formData.append('birth_date' ,document.getElementById('birth_date').value);
             formData.append('country_id' ,document.getElementById('country_id').value);
             formData.append('image' ,document.getElementById('image').files[0]);
-            store('/news/admin/admins', formData)
+            formData.append('file' ,document.getElementById('file').files[0]);
+            store('/news/admin/authors', formData)
 
         }
     </script>

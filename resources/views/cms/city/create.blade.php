@@ -44,8 +44,8 @@
 
       <div class="card-footer">
         <a href="#" onclick="performstore()" type="button" class="btn btn-primary">Store</a>
-        {{-- <a href="{{ route('cities.index') }}" type="button"
-        class="btn btn-primary">Return to index</a> --}}
+        <a href="{{ route('cities.index') }}" type="button"
+        class="btn btn-primary">Return to index</a>
       </div>
     </form>
   </div>

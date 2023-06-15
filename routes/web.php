@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\AuthorCountroller;
+use App\Http\Controllers\Categorycontroller;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use Illuminate\Support\Facades\Route;
@@ -28,4 +30,8 @@ Route::prefix('news/admin/')->group(function () {
     Route::post('update_cities/{id}', [CityController::class, 'update'])->name('update_cities');
     Route::resource('admins', adminController::class);
     Route::post('update_admins/{id}', [adminController::class, 'update'])->name('update_admins');
+    Route::resource('authors', AuthorCountroller::class);
+    Route::post('update_authors/{id}', [AuthorCountroller::class, 'update'])->name('update_authors');
+    Route::resource('categories', Categorycontroller::class);
+    Route::post('update_categories/{id}', [Categorycontroller::class, 'update'])->name('update_categories');
 });

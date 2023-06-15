@@ -1,23 +1,23 @@
 @extends('cms.parant')
 
 
-@section('titel','Index Admin')
+@section('titel','Index author')
 
 @section('styles')
 
 @endsection
-@section('Maintitel','Index Admin')
+@section('Maintitel','Index author')
 
-@section('subtitel','index admin')
+@section('subtitel','index author')
 
 @section('content')
 
 <div class="col-12">
     <div class="card">
       <div class="card-header">
-        {{-- <h3 class="card-title">Admin of Table</h3> --}}
-        <a href="{{ route('admins.create') }}" type="button"
-        class="btn btn-primary">Add New Admin</a>
+        {{-- <h3 class="card-title">author of Table</h3> --}}
+        <a href="{{ route('authors.create') }}" type="button"
+        class="btn btn-primary">Add New author</a>
 
         <div class="card-tools">
 
@@ -41,28 +41,30 @@
             </tr>
             </thead>
             <tbody>
-                @foreach ($admins as $admin)
+                @foreach ($authors as $author)
 
                 <tr>
-                    <td>{{ $admin->id }}</td>
+                    <td>{{ $author->id }}</td>
                     {{-- يجوز الوجهان في كتابة البديل في هدول المثالين --}}
-                    <td>{{ $admin->user->first_name ?? 'not found' }}</td>
-                    <td>{{ $admin->user ? $admin->user->last_name : 'not found' }}</td>
-                    <td>{{ $admin->email}}</td>
-                    <td>{{ $admin->user->mobile ??'not found'  }}</td>
-                    <td>{{ $admin->user->status ?? 'not found' }}</td>
-                    <td>{{ $admin->user->gender ?? 'not found' }}</td>
-                    <td>{{ $admin->user->birth_date ?? 'not found' }}</td>
+                    <td>{{ $author->user->first_name ?? 'not found' }}</td>
+                    <td>{{ $author->user ? $author->user->last_name : 'not found' }}</td>
+                    <td>{{ $author->email}}</td>
+                    <td>{{ $author->user->mobile??'not found'  }}</td>
+                    <td>{{ $author->user->status ?? 'not found' }}</td>
+                    <td>{{ $author->user->gender ?? 'not found' }}</td>
+                    <td>{{ $author->user->birth_date ?? 'not found' }}</td>
                     <td>
 
                         <img class="img-circle img-bordered-sm "
-                        src="{{ $admin->user ? asset('storage/images/admin/'.$admin->user->image) : asset('image/Backend_Roadmap _.jpg') }}"
+                        src="{{ $author->user ? asset('storage/images/authors/'.$author->user->image) : asset('image/Backend_Roadmap _.jpg') }}"
                         width="50" height="50" alt="User Image">
                     </td>
+
+
                 <td>
             <div class="btn-group-sm card-body">
-            <a href={{ route('admins.edit', $admin->id ) }} type="button" class="btn btn-primary">edit</a>
-            <a href="#"  onclick="performDestroy({{ $admin->id }}, this)"
+            <a href={{ route('authors.edit', $author->id ) }} type="button" class="btn btn-primary">edit</a>
+            <a href="#"  onclick="performDestroy({{ $author->id }}, this)"
                 type="button" class="btn btn-danger">Delete</a>
 
                 {{-- <button type="button" class="btn btn-success">info</button> --}}
@@ -75,7 +77,7 @@
         </div>
         <!-- /.card-body -->
     </div>
-    {{ $admins->links() }}
+    {{ $authors->links() }}
     <!-- /.card -->
 </div>
 
@@ -87,9 +89,10 @@
 
 
 function performDestroy(id,referance) {
-        let url= '/news/admin/admins/'+id;
+        let url= '/news/admin/authors/'+id;
         confirmDestroy(url,referance)
 
     }
 </script>
 @endsection
+

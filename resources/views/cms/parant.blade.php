@@ -239,6 +239,61 @@
             </ul>
           </li>
 
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-robot"></i>
+
+              <p>
+                Author
+                <i class="fas fa-angle-left right"></i>
+
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('authors.index') }}" class="nav-link">
+                  <i class=" nav-icon fas fa-list-ul"></i>
+                  <p>index</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('authors.create') }}" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>create</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+
+              <i class=" nav-icon far fas fa-audio-description"></i>
+              
+              <p>
+                Category
+                <i class="fas fa-angle-left right"></i>
+
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('categories.index') }}" class="nav-link">
+                  <i class=" nav-icon fas fa-list-ul"></i>
+                  <p>index</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('categories.create') }}" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>create</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-globe-americas"></i>
@@ -263,7 +318,6 @@
               </li>
             </ul>
           </li>
-
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-city"></i>
