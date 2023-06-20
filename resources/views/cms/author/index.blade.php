@@ -29,10 +29,11 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>FitstName</th>
-                <th>LastName</th>
+                <th>Full Name</th>
+                {{-- <th>LastName</th> --}}
                 <th>Email</th>
                 <th>Mobile</th>
+                <th>Article</th>
                 <th>Status </th>
                 <th>Gender</th>
                 <th>BirthDate</th>
@@ -46,10 +47,15 @@
                 <tr>
                     <td>{{ $author->id }}</td>
                     {{-- يجوز الوجهان في كتابة البديل في هدول المثالين --}}
-                    <td>{{ $author->user->first_name ?? 'not found' }}</td>
-                    <td>{{ $author->user ? $author->user->last_name : 'not found' }}</td>
+        <td>{{ $author->user ? $author->user->first_name.' '.$author->user->last_name: 'not found'  }}</td>
+                    {{-- <td>{{ $author->user ? $author->user->last_name : 'not found' }}</td> --}}
                     <td>{{ $author->email}}</td>
                     <td>{{ $author->user->mobile??'not found'  }}</td>
+
+                    <td><a href="{{route('indexArticles',['id'=>$author->id])}}"
+                        class="btn btn-info">({{$author->articles_count}})
+                        article/s</a> </td>
+
                     <td>{{ $author->user->status ?? 'not found' }}</td>
                     <td>{{ $author->user->gender ?? 'not found' }}</td>
                     <td>{{ $author->user->birth_date ?? 'not found' }}</td>

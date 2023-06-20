@@ -17,7 +17,7 @@ class AuthorCountroller extends Controller
      */
     public function index()
     {
-        $authors = Author::with('user')->orderBy('id', 'asc')->Paginate(7);
+        $authors = Author::with('user')->withCount('articles')->orderBy('id', 'asc')->Paginate(7);
         return response()->view('cms.author.index', compact('authors'));
     }
 

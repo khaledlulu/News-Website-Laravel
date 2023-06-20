@@ -25,9 +25,6 @@
   <link rel="stylesheet" href="{{ asset('cms/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('cms/plugins/summernote/summernote-bs4.min.css') }}">
-
-
-
   <link rel="stylesheet" href="{{ asset('cms/plugins/toastr/toastr.min.css') }}">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
@@ -265,12 +262,37 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-newspaper"></i>
+
+              <p>
+                Article
+                <i class="fas fa-angle-left right"></i>
+
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('articles.index') }}" class="nav-link">
+                  <i class=" nav-icon fas fa-list-ul"></i>
+                  <p>index</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('articles.create') }}" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>create</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
 
               <i class=" nav-icon far fas fa-audio-description"></i>
-              
+
               <p>
                 Category
                 <i class="fas fa-angle-left right"></i>

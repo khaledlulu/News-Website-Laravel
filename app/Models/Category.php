@@ -19,4 +19,9 @@ class Category extends Model
             'id'
         );
     }
+
+    public function articles()
+    {
+        return $this->hasMany(Articles::class);
+    }
 }

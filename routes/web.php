@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AuthorCountroller;
 use App\Http\Controllers\Categorycontroller;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\UserAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +23,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::prefix('news/admin/')->group(function () {
+    Route::get('login', [UserAuthController::class, 'showLogin'])->name('login.view');
+});
 
 Route::prefix('news/admin/')->group(function () {
     Route::view('test', 'cms.parant');
@@ -34,4 +39,10 @@ Route::prefix('news/admin/')->group(function () {
     Route::post('update_authors/{id}', [AuthorCountroller::class, 'update'])->name('update_authors');
     Route::resource('categories', Categorycontroller::class);
     Route::post('update_categories/{id}', [Categorycontroller::class, 'update'])->name('update_categories');
+
+
+    Route::resource('articles', ArticlesController::class);
+    Route::post('update_articles/{id}', [ArticlesController::class, 'update'])->name('update_articles');
+    Route::get('/create/articles/{id}', [ArticlesController::class, 'createArticles'])->name('createArticles');
+    Route::get('/index/articles/{id}', [ArticlesController::class, 'indexArticles'])->name('indexArticles');
 });
