@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in (v2)</title>
+  <title>Login </title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -27,9 +27,10 @@
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="../../index3.html" method="post">
+      <form method="POST" >
+        @csrf
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control" placeholder="Email" name="email" id="email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -37,7 +38,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -45,37 +46,37 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-8">
+          {{-- <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember">
+              <input type="checkbox" name="remember" id="remember">
               <label for="remember">
                 Remember Me
               </label>
             </div>
-          </div>
+          </div> --}}
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="button " onclick="login()" class="btn btn-primary btn-block">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
-      <div class="social-auth-links text-center mt-2 mb-3">
+      {{-- <div class="social-auth-links text-center mt-2 mb-3">
         <a href="#" class="btn btn-block btn-primary">
           <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
         </a>
         <a href="#" class="btn btn-block btn-danger">
           <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
         </a>
-      </div>
+      </div> --}}
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        <a href="#">I forgot my password</a>
       </p>
       <p class="mb-0">
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="#" class="text-center">Register a new membership</a>
       </p>
     </div>
     <!-- /.card-body -->
@@ -94,5 +95,51 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{{asset('cms/plugins/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('cms/js/crud.js') }}"></script>
+
+
+<script>
+    // function login(url,data) {
+
+    //     var guard = '{{request('guard')}}';
+    // axios.post('/news/'+guard+'/login', {
+    //     email : document.getElementById('email').value,
+    //     password : document.getElementById('password').value,
+    //     remember: document.getElementById('remember').checked ? 'on' : 'off',
+    //     guard:guard,
+    // })
+    //     .then(function (response) {
+    //     window.location.href ='/news/admin/admins';
+
+    //     })
+    //     .catch(function (error) {
+
+    //         if (error.response.data.errors !== undefined) {
+    //             showErrorMessages(error.response.data.errors);
+    //         } else {
+    //             showMessage(error.response.data);
+    //         }
+    //     });
+    // }
+    function login(url, data) {
+  var guard = '{{ request('guard') }}';
+  axios.post('/news/' + guard + '/login', {
+    email:document.getElementById('email').value,
+    password:document.getElementById('password').value,
+    // remember:document.getElementById('remember').checked ? 'on' : '',
+    guard:guard,
+  })
+    .then(function (response) {
+      window.location.href = '/news/admin/';
+    })
+    .catch(function (error) {
+      if (error.response.data.errors !== undefined) {
+        showErrorMessages(error.response.data.errors);
+      } else {
+        showMessage(error.response.data);
+      }
+    });
+}
+
+</script>
 </body>
 </html>

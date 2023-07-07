@@ -167,7 +167,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{ asset('cms/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">News Website</span>
     </a>
 
     <!-- Sidebar -->
@@ -175,10 +175,23 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('cms/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="
+          @if(auth('admin')->check())
+              {{ asset('/storage/images/admin/'.auth('admin')->user()->images) }}
+          @else
+              {{ asset('/storage/images/authors/'.auth('author')->user()->images) }}
+          @endif
+          "
+       class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+        <a href="#" class="d-block">
+
+            @if(auth('admin')->check())  Admin {{ auth('admin')->user()->full_name }}
+            @else  Author {{ auth('author')->user()->full_name }}
+            @endif
+
+        </a>
         </div>
       </div>
 
@@ -210,6 +223,58 @@
 
         </li>
 
+        <li class="nav-header">Roles & permission</li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user-tag"></i>
+
+
+              <p>
+                Role
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('roles.index') }}" class="nav-link">
+                  <i class=" nav-icon fas fa-list-ul"></i>
+                  <p>index</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('roles.create') }}" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>create</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="nav-item">
+              <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users-cog"></i>
+
+                <p>
+                  permission
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('permissions.index') }}" class="nav-link">
+                    <i class=" nav-icon fas fa-list-ul"></i>
+                    <p>index</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('permissions.create') }}" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>create</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
         <li class="nav-header">admin</li>
         <li class="nav-item">
             <a href="#" class="nav-link">
@@ -381,7 +446,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('logout.news') }}" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
 
               <p>logout</p>
@@ -419,7 +484,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; {{ now()->year}}-{{ now()->year+1}}  <a href="https://adminlte.io">{{ env('APP_NAME') }}</a></strong>
+    <strong>Copyright &copy; {{ now()->year}}-{{ now()->year+1}}  <a href="{{ route('Home') }}">{{ env('APP_NAME') }}</a></strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> {{ env('App_VEARTION') }}

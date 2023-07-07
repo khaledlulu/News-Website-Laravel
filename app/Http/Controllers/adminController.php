@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\admin;
 use App\Models\Country;
 use App\Models\User;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class adminController extends Controller
@@ -175,8 +177,15 @@ class adminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Admin $admin)
     {
-        $admins = admin::destroy($id);
+        // $admins = admin::destroy($id);
+        if ($admin->id == Auth::id()) {
+            return redirect(route('admins.index'))->withErrors(trans('Cannot Delete Yourslef'));
+        } else {
+            $admin->user()->delete();
+            $isdeleted = $admin->delete();
+            return response()->json(['icon' => 'Success', 'title' => 'Deleted is successfully'], 200);
+        }
     }
 }

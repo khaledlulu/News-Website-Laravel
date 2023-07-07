@@ -49,7 +49,7 @@
                     <td>{{ $admin->user->first_name ?? 'not found' }}</td>
                     <td>{{ $admin->user ? $admin->user->last_name : 'not found' }}</td>
                     <td>{{ $admin->email}}</td>
-                    <td>{{ $admin->user->mobile ??'not found'  }}</td>
+                    <td>{{ $admin->user ? $admin->user->mobile : 'not found'  }}</td>
                     <td>{{ $admin->user->status ?? 'not found' }}</td>
                     <td>{{ $admin->user->gender ?? 'not found' }}</td>
                     <td>{{ $admin->user->birth_date ?? 'not found' }}</td>

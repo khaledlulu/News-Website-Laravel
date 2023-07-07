@@ -78,19 +78,19 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'authors' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Author::class,
-        ],
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\admin::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'authors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Author::class,
+        ],
+        'users' => [
+            'driver' => 'database',
+            'table' => 'users',
+        ],
     ],
 
     /*
