@@ -33,7 +33,7 @@
                 @endforeach
             </select>
         </div> --}}
-        <input type="text" name="author_id" id="author_id" value="{{$id}}"
+        <input type="text" name="author_id" id="author_id" 
                     class="form-control form-control-solid" hidden/>
 
         <div class="form-group col-md-12">

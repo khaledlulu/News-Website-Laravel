@@ -5,11 +5,15 @@ use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AuthorCountroller;
 use App\Http\Controllers\Categorycontroller;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Role_PermissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\Website\HomeController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 
@@ -58,4 +62,30 @@ Route::prefix('news/admin/')->middleware('auth:admin,author')->group(function ()
     Route::resource('permissions', PermissionController::class);
     Route::post('update_permissions/{id}', [PermissionController::class, 'update'])->name('update_permissions');
     Route::resource('roles.permission', Role_PermissionController::class);
+
+    Route::resource('sliders', SliderController::class);
+    Route::post('update_sliders/{id}', [SliderController::class, 'update'])->name('update_sliders');
+    Route::resource('comments', CommentController::class);
+    Route::resource('contacts', ContactController::class);
+});
+// ['namespace' => 'website']
+Route::prefix('/Home')->group(function () {
+
+    Route::get('Home', [HomeController::class, 'parant'])->name('Home');
+    Route::get('index', [HomeController::class, 'index'])->name('index');
+    Route::get('contact', [HomeController::class, 'contact'])->name('website.contact');
+    Route::post('contact', [ContactController::class, 'store'])->name('store.contact');
+    // Route::view('x1' , 'website.index')->name('website.index');
+    // Route::view('x2' , 'website.contact')->name('website.contact');
+    // Route::view('x3' , 'website.all-news')->name('website.all-news');
+
+    // Route::view('x4' , 'website.newsdetailes')->name('website.det');
+
+    // Route::get('show/{id}' , [HomeController::class , 'showDet'])->name('website.det');
+    // Route::get('all/{id}' , [HomeController::class , 'allNews'])->name('website.all');
+    // Route::get('all/{id}' , [HomeController::class , 'allNews'])->name('website.all');
+    // Route::post('comment/{id}' , [HomeController::class , 'storComment'])->name('website.storComment');
+
+
+
 });
