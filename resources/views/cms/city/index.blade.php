@@ -31,6 +31,7 @@
                 <th>ID</th>
                 <th>Country Name</th>
                 <th>City Name</th>
+                <th>Street Name</th>
                 <th>City Code</th>
                 <th>setting</th>
             </tr>
@@ -43,6 +44,7 @@
                     <td>{{ $city->country->country_name??'not found' }}</td>
                     <td>{{ $city->city_name }}</td>
                     <td>{{ $city->street }}</td>
+                    <td>{{ $city->country->code }}</td>
                     <td>
 
                     <div class="btn ">

@@ -15,8 +15,9 @@
 <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Country of Table</h3>
-
+        {{-- <h3 class="card-title">Country of Table</h3> --}}
+        <a href="{{ route('countries.create') }}" type="button"
+        class="btn btn-primary">Add New Country</a>
         <div class="card-tools">
           <div class="input-group input-group-sm" style="width: 150px;">
             <input type="text" name="table_search" class="form-control float-right" placeholder="Search">

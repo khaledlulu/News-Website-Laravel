@@ -67,7 +67,12 @@ Route::prefix('news/admin/')->middleware('auth:admin,author')->group(function ()
     Route::post('update_sliders/{id}', [SliderController::class, 'update'])->name('update_sliders');
     Route::resource('comments', CommentController::class);
     Route::resource('contacts', ContactController::class);
+    Route::get('edit/profile', [UserAuthController::class, 'EditProfile'])->name('editProfile');
+    Route::post('update/profile', [UserAuthController::class, 'UpdateProfile']);
+    Route::get('change/password', [UserAuthController::class, 'changePassword'])->name('changePassword');
+    Route::post('update/password', [UserAuthController::class, 'updatePassword']);
 });
+
 // ['namespace' => 'website']
 Route::prefix('/Home')->group(function () {
 

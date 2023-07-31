@@ -56,12 +56,12 @@
                     <td>
 
                         <img class="img-circle img-bordered-sm "
-                        src="{{ $admin->user ? asset('storage/images/admin/'.$admin->user->image) : asset('image/Backend_Roadmap _.jpg') }}"
+            src="{{ $admin->user ? asset('storage/images/admin/'.$admin->user->image) : asset('image/Backend_Roadmap _.jpg') }}"
                         width="50" height="50" alt="User Image">
                     </td>
                 <td>
             <div class="btn-group-sm card-body">
-            <a href={{ route('admins.edit', $admin->id ) }} type="button" class="btn btn-primary">edit</a>
+            {{-- <a href={{ route('admins.edit', $admin->id ) }} type="button" class="btn btn-primary">edit</a> --}}
             <a href="#"  onclick="performDestroy({{ $admin->id }}, this)"
                 type="button" class="btn btn-danger">Delete</a>
 

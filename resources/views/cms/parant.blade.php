@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="{{ asset('cms/plugins/summernote/summernote-bs4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('cms/plugins/toastr/toastr.min.css') }}">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
 
   @yield('style')
@@ -498,14 +499,14 @@
 
           <li class="nav-header">Setting</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('editProfile') }}" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
 
               <p class="text">edit profile</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('changePassword') }}" class="nav-link">
               <i class="nav-icon fas fa-key"></i>
 
               <p>change password</p>
@@ -604,6 +605,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{{asset('cms/plugins/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('cms/js/crud.js') }}"></script>
+<script src="{{ asset('cms/js/felidpassword.js') }}"></script>
 
 @yield('script')
 </body>

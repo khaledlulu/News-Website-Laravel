@@ -169,7 +169,7 @@
                     beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
             </div>
             <div class="col-md-4">
-                <a class="btn btn-lg btn-secondary btn-block" href="#">contact us</a>
+                <a class="btn btn-lg btn-secondary btn-block" href="{{ route('website.contact') }}">contact us</a>
             </div>
         </div>
     </div>

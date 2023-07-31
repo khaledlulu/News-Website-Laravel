@@ -180,6 +180,9 @@ class adminController extends Controller
     public function destroy(Admin $admin)
     {
         // $admins = admin::destroy($id);
+
+        //  الي مسجل دخول للنظام admin هان بيخليه ما يقدر يحذف نفسه ال 
+
         if ($admin->id == Auth::id()) {
             return redirect(route('admins.index'))->withErrors(trans('Cannot Delete Yourslef'));
         } else {

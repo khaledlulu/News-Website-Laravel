@@ -29,7 +29,9 @@
             <tr>
                 <th>ID</th>
                 <th>Article Title</th>
-                <th>Description Article </th>
+                <th>Short Description Article </th>
+                <th>Full Description Article </th>
+                <th>Name Aouthor </th>
                 {{-- <th>setting</th> --}}
             </tr>
             </thead>
@@ -41,7 +43,9 @@
                     <td>{{ $article->title }}</td>
                     <td>{{ $article->short_description }}</td>
                     <td>{{ $article->full_description }}</td>
+        <td>{{ $article->author->user->first_name.' '.$article->author->user->last_name  }}</td>
 
+        
                     {{-- <td>
                     <div class="btn ">
             <a href={{ route('articles.edit', $article->id ) }} type="button" class="btn btn-primary">edit</a>

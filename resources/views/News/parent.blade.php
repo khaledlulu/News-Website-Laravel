@@ -23,6 +23,8 @@ $categories = Category::all();
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('News/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
+    <link rel="icon" href= "{{ asset('image/icon image.png') }}" >
+
     <!-- Custom styles for this template -->
     <link href="{{ asset('News/css/modern-business.css') }}" rel="stylesheet">
 

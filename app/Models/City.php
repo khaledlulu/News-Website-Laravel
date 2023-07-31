@@ -13,4 +13,9 @@ class City extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    //   api هان بكتب اسماء الاعمدة الي ما بدي اياها تظهر لما اعمل ال
+    protected $hidden = [
+        'updated_at', 'created_at',
+    ];
 }

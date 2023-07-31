@@ -22,7 +22,7 @@
         @csrf
 
     <div class="card-body">
-        {{-- <div class="form-group col-md-12">
+        <div class="form-group col-md-12">
             <label for="author_id"> Name the Author</label>
             <select class="form-control " style="width: 100%;" id="author_id" name="author_id"
             aria-label=".form-select-sm example">
@@ -32,9 +32,9 @@
             </option>
                 @endforeach
             </select>
-        </div> --}}
-        <input type="text" name="author_id" id="author_id" 
-                    class="form-control form-control-solid" hidden/>
+        </div>
+        {{-- <input type="text" name="author_id" id="author_id"
+                    class="form-control form-control-solid" hidden/> --}}
 
         <div class="form-group col-md-12">
             <label for="category_id">Category Name</label>

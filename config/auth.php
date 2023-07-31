@@ -44,8 +44,19 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+
         'author' => [
             'driver' => 'session',
+            'provider' => 'authors',
+        ],
+
+        'admin_api' => [
+            'driver' => 'passport',
+            'provider' => 'admins',
+        ],
+
+        'author_api' => [
+            'driver' => 'passport',
             'provider' => 'authors',
         ],
 

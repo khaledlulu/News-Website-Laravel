@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 // use Illuminate\Database\Eloquent\Model;
 
 class Author extends Authenticatable
 {
-    use HasFactory, HasRoles;
+    use HasFactory, HasRoles, HasApiTokens;
     public function user()
     {
         return $this->morphOne(User::class, 'actor', 'actor_type', 'actor_id', 'id');

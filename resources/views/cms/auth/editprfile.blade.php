@@ -1,20 +1,20 @@
 @extends('cms.parant')
 
 
-@section('titel','Edit New Admin')
+@section('titel','Edit Profile ')
 
 @section('style')
 
 @endsection
-@section('Maintitel','Edit Admin')
+@section('Maintitel','Edit Profile')
 
-@section('subtitel','edit admin')
+@section('subtitel','edit Profile')
 
 @section('content')
 <div class=" card-body">
 <div class="card card-primary ">
     <div class="card-header">
-        <h3 class="card-title">Craet New Admin</h3>
+        <h3 class="card-title">Edit  Admin</h3>
     </div>
 
     <!-- /.card-header -->
@@ -95,7 +95,7 @@
 <div class="form-group col-md-6 card-body">
     <label for="image">Image </label>
     <input type="file" class="form-control" name="image" id="image"
-    value="{{ $admins->user->image }}"placeholder=" chosee the pic">
+    value="{{   $admins->user->image }}" placeholder=" chosee the pic">
         </div>
 
 
@@ -127,7 +127,7 @@
             formData.append('birth_date' ,document.getElementById('birth_date').value);
             formData.append('image' ,document.getElementById('image').files[0]);
             formData.append('country_id' ,document.getElementById('country_id').value);
-            storeRoute('/news/admin/update_admins/'+ id ,formData)
+            storeRoute('/news/admin/update/profile' ,formData)
 
         }
     </script>
