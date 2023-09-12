@@ -149,45 +149,4 @@ class UserAuthController extends Controller
             ], 400);
         }
     }
-
-
-
-
-
-
-    // public function updatePassword(Request $request)
-    // {
-    //     $guard = auth('admin')->check() ? 'admin' : 'author';
-    //     $validator = Validator::make($request->all(), [
-    //         'password' => 'required|string',
-    //         'new_password' => 'required|string', // 'confirmed' rule ensures 'new_password' and 'confirm_password' match
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         // Password and confirm password do not match
-    //         return response()->json(['icon' => 'error', 'title' => 'Passwords do not match'], 400);
-    //     }
-
-    //     $user = auth($guard)->user();
-
-    //     if (!$user) {
-    //         return response()->json(['icon' => 'error', 'title' => 'User not found'], 404);
-    //     }
-
-    //     // Check if the entered current password matches the one in the database
-    //     if (!Hash::check($request->get('password'), $user->password)) {
-    //         return response()->json(['icon' => 'error', 'title' => 'Current password is incorrect'], 400);
-    //     }
-
-    //     // At this point, both the new password and confirm password fields match
-    //     // You can proceed with updating the user's password
-    //     $user->password = Hash::make($request->get('new_password'));
-    //     $isSaved = $user->save();
-
-    //     if ($isSaved) {
-    //         return response()->json(['icon' => 'success', 'title' => 'The password has been changed successfully'], 200);
-    //     } else {
-    //         return response()->json(['icon' => 'error', 'title' => 'Failed to change the password'], 400);
-    //     }
-    // }
 }

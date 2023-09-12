@@ -23,8 +23,9 @@ class ArticlesController extends Controller
 
     public function createArticles($id)
     {
+        $authors = Author::all();
         $categories = Category::all();
-        return response()->view('cms.article.create', compact('id', 'categories'));
+        return response()->view('cms.article.create', compact('authors', 'id', 'categories'));
     }
 
 
